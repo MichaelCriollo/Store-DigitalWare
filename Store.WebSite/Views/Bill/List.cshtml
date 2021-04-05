@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Store.Entity.Entities.Bill>
+
+<input type="hidden" id="HdnUrlDeleteBill" name="DeleteBill" value="@Url.Action("Delete", "Bill")" />
+<input type="hidden" id="HdnUrlList" name="ListBills" value="@Url.Action("List", "Bill")" />
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Crear Factura", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdBill)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateEdit)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdBill)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateEdit)
+            </td>
+            <td>
+                @Html.ActionLink("Detalle", "Details", new { IdBill = item.IdBill }, new { @class = "btn btn-info" }) |
+                <a href="javascript:void(0)" onclick="DeleteBill(@item.IdBill)" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    <script src="~/Scripts/Bill/List.js"></script>
+}

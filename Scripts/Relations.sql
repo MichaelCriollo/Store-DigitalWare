@@ -1,0 +1,34 @@
+Use STORE
+
+ALTER TABLE [TypeProduct] ADD CONSTRAINT PK_IdTypeProduct PRIMARY KEY(IdTypeProduct)
+
+ALTER TABLE Gender ADD CONSTRAINT PK_IdGender PRIMARY KEY(IdGender)
+
+ALTER TABLE [State] ADD CONSTRAINT PK_IdState PRIMARY KEY(IdState)
+
+ALTER TABLE Size ADD CONSTRAINT PK_IdSize PRIMARY KEY(IdSize)
+
+ALTER TABLE Color ADD CONSTRAINT PK_IdColor PRIMARY KEY(IdColor)
+
+ALTER TABLE SizeTypeProduct ADD CONSTRAINT PK_IdSizeTypeProduct PRIMARY KEY(IdSizeTypeProduct)
+ALTER TABLE SizeTypeProduct ADD CONSTRAINT FK_IdSize_SizeTypeProduct_Size FOREIGN KEY (IdSize) REFERENCES Size(IdSize)
+ALTER TABLE SizeTypeProduct ADD CONSTRAINT FK_IdTypeProduct_SizeTypeProduct_TypeProduct FOREIGN KEY (IdTypeProduct) REFERENCES [TypeProduct](IdTypeProduct)
+
+ALTER TABLE Product ADD CONSTRAINT PK_IdProduct PRIMARY KEY(IdProduct)
+ALTER TABLE Product ADD CONSTRAINT FK_IdTypeProduct_Product_TypeProduct FOREIGN KEY (IdTypeProduct) REFERENCES [TypeProduct](IdTypeProduct)
+ALTER TABLE Product ADD CONSTRAINT FK_IdState_Product_State FOREIGN KEY (IdState) REFERENCES [State](IdState)
+ALTER TABLE Product ADD CONSTRAINT FK_IdColor_Product_Color FOREIGN KEY (IdColor) REFERENCES Color(IdColor)
+ALTER TABLE Product ADD CONSTRAINT FK_IdGender_Product_Gender FOREIGN KEY (IdGender) REFERENCES Gender(IdGender)
+
+ALTER TABLE ProductSize ADD CONSTRAINT PK_IdProductSize PRIMARY KEY(IdProductSize)
+ALTER TABLE ProductSize ADD CONSTRAINT FK_IdProduct_ProductSize_Product FOREIGN KEY (IdProduct) REFERENCES Product(IdProduct)
+ALTER TABLE ProductSize ADD CONSTRAINT FK_IdSize_ProductSize_Size FOREIGN KEY (IdSize) REFERENCES Size(IdSize)
+
+ALTER TABLE Client ADD CONSTRAINT PK_IdClient PRIMARY KEY(IdClient)
+
+ALTER TABLE Bill ADD CONSTRAINT PK_IdBill PRIMARY KEY(IdBill)
+ALTER TABLE Bill ADD CONSTRAINT FK_IdClient_Bill_Client FOREIGN KEY (IdClient) REFERENCES Client(IdClient)
+
+ALTER TABLE DetailBill ADD CONSTRAINT PK_IdDetailBill PRIMARY KEY(IdDetailBill)
+ALTER TABLE DetailBill ADD CONSTRAINT FK_IdBill_DetailBill_Bill FOREIGN KEY (IdBill) REFERENCES Bill(IdBill)
+ALTER TABLE DetailBill ADD CONSTRAINT FK_IdProduct_DetailBill_Product FOREIGN KEY (IdProduct) REFERENCES Product(IdProduct)

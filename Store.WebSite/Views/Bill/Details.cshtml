@@ -1,0 +1,46 @@
+﻿@model Store.Entity.Entities.Bill
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detalle de factura</h2>
+
+<div>
+    <h4>Factura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdClient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdClient)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateEdit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEdit)
+        </dd>
+
+    </dl>
+</div>
